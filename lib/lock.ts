@@ -75,6 +75,15 @@ export async function until(test:()=>boolean) {
 export async function lock(name:string, 
                         timeout:number = 0, 
                         mode: Mode = Mode.Normal):Promise<boolean> {
+    let _lock: Info = null;
+    await _immediate().then(()=>{
+        _lock = _locks[name];
+        if(_lock == null) {
+            _lock = new Info();
+            _locks[name] = _lock;
+        }
+    })
+
     let uptime = process.uptime();
     let get_lock = false;
     if(timeout <= 0)
@@ -83,11 +92,6 @@ export async function lock(name:string,
         timeout = timeout/1000;
     do {
         await _immediate().then(() => {
-            let _lock = _locks[name];
-            if(_lock == null) {
-                _lock = new Info();
-                _locks[name] = _lock;
-            }
             get_lock = _lock.lock(mode);
         });
         if (get_lock)
