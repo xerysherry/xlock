@@ -3,6 +3,8 @@ xlock
 
 a easy and useful lock for NodeJS
 
+![npm](https://nodei.co/npm/xlock.png)
+
 How to Install?
 ---------------
 
@@ -97,6 +99,8 @@ xlock
 =====
 
 一个简单有用的锁
+
+![npm](https://nodei.co/npm/xlock.png)
 
 如何安装？
 ---------

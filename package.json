@@ -1,5 +1,5 @@
 {
-  "name": "xulock",
+  "name": "xlock",
   "version": "1.0.0",
   "description": "Lock For NodeJS.",
   "main": "dist/lock.js",
