@@ -1,18 +1,35 @@
 {
   "name": "xulock",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Lock For NodeJS.",
+  "main": "dist/lock.js",
+  "typings": "lib/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
+  "keywords": [
+    "lock",
+    "mutex",
+    "promise",
+    "wait",
+    "sleep",
+    "readlock",
+    "writelock",
+    "rwlock"
+  ],
   "author": "xerysherry",
   "license": "Apache-2.0",
-  "dependencies": {
-    "typescript": "^2.6.2",
-    "xulogger": "^1.0.3"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "typescript": "^2.6.2",
     "@types/node": "^9.3.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xerysherry/xlock.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xerysherry/xlock/issues"
+  },
+  "homepage": "https://github.com/xerysherry/xlock#readme"
 }

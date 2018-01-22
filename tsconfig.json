@@ -9,8 +9,7 @@
         "lib": ["dom", "es2015"],
     },
     "include": [
-        "lib/**/*",
-        "test/**/*",
+        "lib/**/*"
     ],
     "exclude": [
         "node_modules"
