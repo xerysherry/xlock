@@ -61,6 +61,12 @@ async function lock(name:string, timeout?:number, mode?: Mode):Promise<boolean>
  */
 function unlock(name: string): void;
 /**
+ * Check Lock. If unlock, return false. If lock, return true.
+ * @param name Lock name
+ * @param mode Lock Mode. (Normal, Read, Write)
+ */
+function check(name: string, mode?:Mode): boolean;
+/**
  * Read Lock
  * @param name Lock Name
  * @param timeout see lock api
@@ -72,6 +78,11 @@ async function read_lock(name:string, timeout?:number):Promise<boolean>;
  */
 function read_unlock(name: string): void;
 /**
+ * Check ReadLock
+ * @param name Lock Name
+ */
+function check_read_lock(name:string): boolean;
+/**
  * Write Lock
  * @param name Lock Name
  * @param timeout see lock api
@@ -82,6 +93,11 @@ async function write_lock(name:string, timeout?:number):Promise<boolean>;
  * @param name Unlock Name
  */
 function write_unlock(name: string): void;
+/**
+ * Check WriteLock
+ * @param name Lock Name
+ */
+function check_write_lock(name:string): boolean;
 
 async function Lock(name: string, dofunc: ()=>void, timeout?:number, mode?: Mode):Promise<boolean>;
 async function ReadLock(name: string, dofunc: ()=>void, timeout?:number, mode?: Mode):Promise<boolean>;
@@ -158,6 +174,12 @@ async function lock(name:string, timeout?:number, mode?: Mode):Promise<boolean>
  */
 function unlock(name: string): void;
 /**
+ * 检查锁状态，如果上锁，返回true。如果未上锁，返回false。
+ * @param name 锁名
+ * @param mode 锁模式。 (Normal 普通互斥锁, Read 读锁, Write 写锁)
+ */
+function check(name: string, mode?:Mode): boolean;
+/**
  * 读锁
  * @param name 锁名
  * @param timeout 参看lock
@@ -169,6 +191,11 @@ async function read_lock(name:string, timeout?:number):Promise<boolean>;
  */
 function read_unlock(name: string): void;
 /**
+ * 检测读锁状态
+ * @param name 锁名
+ */
+function check_read_lock(name:string): boolean;
+/**
  * 写锁
  * @param name 锁名
  * @param timeout 参看lock
@@ -179,6 +206,11 @@ async function write_lock(name:string, timeout?:number):Promise<boolean>;
  * @param name 解锁的锁名
  */
 function write_unlock(name: string): void;
+/**
+ * 检测写锁状态
+ * @param name 锁名
+ */
+function check_write_lock(name:string): boolean;
 
 async function Lock(name: string, dofunc: ()=>void, timeout?:number, mode?: Mode):Promise<boolean>;
 async function ReadLock(name: string, dofunc: ()=>void, timeout?:number, mode?: Mode):Promise<boolean>;
