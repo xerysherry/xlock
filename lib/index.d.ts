@@ -45,6 +45,12 @@ declare namespace xlock
      */
     export function unlock(name: string): void;
     /**
+     * Check Lock. If unlock, return false. If lock, return true.
+     * @param name Lock name
+     * @param mode Lock Mode. (Normal, Read, Write)
+     */
+    export function check(name: string, mode?:Mode): boolean;
+    /**
      * Read Lock
      * @param name Lock Name
      * @param timeout see lock api
@@ -56,6 +62,11 @@ declare namespace xlock
      */
     export function read_unlock(name: string): void;
     /**
+     * Check ReadLock
+     * @param name Lock Name
+     */
+    export function check_read_lock(name:string): boolean;
+    /**
      * Write Lock
      * @param name Lock Name
      * @param timeout see lock api
@@ -66,6 +77,11 @@ declare namespace xlock
      * @param name Unlock Name
      */
     export function write_unlock(name: string): void;
+    /**
+     * Check WriteLock
+     * @param name Lock Name
+     */
+    export function check_write_lock(name:string): boolean;
 
     export function Lock(name: string, dofunc: ()=>void, timeout?:number, mode?: Mode):Promise<boolean>;
     export function ReadLock(name: string, dofunc: ()=>void, timeout?:number, mode?: Mode):Promise<boolean>;

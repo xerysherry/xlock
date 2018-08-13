@@ -122,16 +122,41 @@ export function unlock(name: string) {
     if(lock != null)
         lock.unlock();
 }
+export function check(name: string, mode: Mode = Mode.Normal): boolean {
+    let lock = _locks[name];
+    if(lock == null)
+        return false;
+    else
+    {
+        if(lock.value == 0)
+            return false;
+        switch(lock.mode)
+        {
+            case Mode.Normal:
+            case Mode.Write:
+                return true;
+            case Mode.Read:
+                return mode == Mode.Read;
+        }
+        return false;
+    }
+}
 
 export async function read_lock(name:string, timeout:number = 0) {
     return await lock(name, timeout, Mode.Read);
 }
 export const read_unlock = unlock;
+export function check_read_lock(name:string): boolean {
+    return check(name, Mode.Read);
+}
 
 export async function write_lock(name:string, timeout:number = 0) {
     return await lock(name, timeout, Mode.Write);
 }
 export const write_unlock = unlock;
+export function check_write_lock(name:string): boolean {
+    return check(name, Mode.Write);
+}
 
 export async function Lock(name: string, dofunc: ()=>void, 
                             timeout:number = 0, 

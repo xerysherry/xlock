@@ -168,6 +168,25 @@ function unlock(name) {
         lock.unlock();
 }
 exports.unlock = unlock;
+function check(name, mode) {
+    if (mode === void 0) { mode = Mode.Normal; }
+    var lock = _locks[name];
+    if (lock == null)
+        return false;
+    else {
+        if (lock.value == 0)
+            return false;
+        switch (lock.mode) {
+            case Mode.Normal:
+            case Mode.Write:
+                return true;
+            case Mode.Read:
+                return mode == Mode.Read;
+        }
+        return false;
+    }
+}
+exports.check = check;
 function read_lock(name, timeout) {
     if (timeout === void 0) { timeout = 0; }
     return __awaiter(this, void 0, void 0, function () {
@@ -181,6 +200,10 @@ function read_lock(name, timeout) {
 }
 exports.read_lock = read_lock;
 exports.read_unlock = unlock;
+function check_read_lock(name) {
+    return check(name, Mode.Read);
+}
+exports.check_read_lock = check_read_lock;
 function write_lock(name, timeout) {
     if (timeout === void 0) { timeout = 0; }
     return __awaiter(this, void 0, void 0, function () {
@@ -194,6 +217,10 @@ function write_lock(name, timeout) {
 }
 exports.write_lock = write_lock;
 exports.write_unlock = unlock;
+function check_write_lock(name) {
+    return check(name, Mode.Write);
+}
+exports.check_write_lock = check_write_lock;
 function Lock(name, dofunc, timeout, mode) {
     if (timeout === void 0) { timeout = 0; }
     if (mode === void 0) { mode = Mode.Normal; }
